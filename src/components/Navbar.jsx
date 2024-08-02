@@ -32,7 +32,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <CartWidget className="d-block d-md-none"/> {/* CartWidget for mobile */}
+          <CartWidget className="d-block d-md-none text-light"/> {/* CartWidget for mobile */}
           </div>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto align-items-center">
