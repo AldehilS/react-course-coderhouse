@@ -44,3 +44,11 @@ Here is a description of the components and main features made for the first del
 ## Usage
 
 Once the project is running, you can see the Navbar with the brand name and buttons for Products, About us, and Contact sections. The CartWidget icon with a badge and the welcome message from the ItemListContainer will also be displayed.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) and [NOTICE](NOTICE) files for details.
+
+## Image Copyright
+
+Please note that the image `src/assets/logo.png` is not covered by the Apache License, Version 2.0. The rights to this image are reserved by Aldehil de Jesús Sánchez Hernández. Unauthorized use of this image is prohibited without explicit permission.
