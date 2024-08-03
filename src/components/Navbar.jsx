@@ -23,7 +23,7 @@ export default function Navbar() {
         data-bs-theme="dark"
       >
         <div className="container-fluid row">
-          <a className="navbar-brand col-12 col-md-auto" href="/">
+          <a className="navbar-brand col-12 col-md-auto" href="./">
             <img src={Logo} alt="Aldehil's logo" />
             AldehilS Merch
           </a>
