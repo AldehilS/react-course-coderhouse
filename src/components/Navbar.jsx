@@ -9,9 +9,9 @@ export default function Navbar() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const [dropdownActive, setDropdownActive] = useState(false);
   const navOptions = [
-    new NavOption("Products", ["All", "T-Shirts", "Hoodies", "Mugs"]),
-    new NavOption("About us"),
-    new NavOption("Contact"),
+    new NavOption("Products", "", ["All", "T-Shirts", "Hoodies", "Mugs"]),
+    new NavOption("About us", "/about"),
+    new NavOption("Contact", "/contact"),
   ]; // Array of nav options to be displayed
 
   /**
@@ -67,12 +67,15 @@ export default function Navbar() {
                         index === activeButtonIndex ? "active " : ""
                       } ${option.options.length > 0 ? "dropdown-toggle" : ""}`}
                       text={option.name}
-                      onClick={() => {
-                        handleButtonClick(index);
+                      onClick={
                         option.options.length > 0
-                          ? setDropdownActive(!dropdownActive)
-                          : setDropdownActive(false);
-                      }}
+                          ? () => setDropdownActive(!dropdownActive)
+                          : () => {
+                              handleButtonClick(index);
+                              setDropdownActive(false);
+                            }
+                      }
+                      route={option.route}
                     />
                     {option.options.length > 0 ? (
                       <ul
