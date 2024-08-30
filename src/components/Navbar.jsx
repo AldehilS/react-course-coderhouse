@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="navbar navbar-expand-md bg-dark justify-content-center pb-3"
+        className="navbar navbar-expand-md bg-dark justify-content-center pb-3 sticky-md-top"
         data-bs-theme="dark"
       >
         <div className="container-fluid row">

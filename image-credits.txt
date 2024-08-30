@@ -1,0 +1,23 @@
+src/assets/products/tshirt1.png
+https://www.freepik.com/free-vector/men-s-t-shirt-different-views-with-realistic-style_2409377.htm#fromView=search&page=1&position=0&uuid=0a032b0b-a7c8-4a76-99c0-500a7f5c6671
+
+src/assets/products/tshirt2.png
+https://www.freepik.com/free-vector/t-shirt-design-samples-with-illustration-guessing-arm-design_10705484.htm#fromView=search&page=1&position=1&uuid=28b2251b-d4c2-48c1-9421-6faf766b0b5b
+
+src/assets/products/tshirt3.png
+https://www.freepik.com/free-photo/simple-white-v-neck-t-shirt-mockup-wooden-hanger_13301134.htm#fromView=search&page=1&position=0&uuid=c5cb9c6b-6174-4315-ad76-8315a93e8f60
+
+src/assets/products/tshirt4.png
+https://www.freepik.com/free-photo/t-shirt_1135256.htm?log-in=google#fromView=search&page=2&position=49&uuid=29a22c6d-eea8-4a0c-9a17-34dc17d37d6b
+
+src/assets/products/tshirt5.png
+https://www.freepik.com/free-vector/female-long-sleeve-t-shirt-front-back-mock-up-template_30002973.htm#fromView=search&page=1&position=29&uuid=293e8504-7321-42e7-bb38-9d814bf50eda
+
+src/assets/products/hoodie1.png
+Imagen de <a href="https://pixabay.com/es/users/mrbaydar-15337266/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5134300">Burak Baydar</a> en <a href="https://pixabay.com/es//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=5134300">Pixabay</a>
+
+src/assets/products/hoodie2.png
+https://www.freepik.com/free-photo/black-hoodie-with-zipper_13237308.htm#fromView=search&page=1&position=19&uuid=84a2b92a-1704-41b3-b221-2fadc158b14f
+
+src/assets/products/placeholder.svg
+https://www.freepik.com/free-vector/load-more-concept-illustration_9793182.htm#fromView=search&page=1&position=29&uuid=f82de039-5f91-4a50-9319-8374cdc34e29
