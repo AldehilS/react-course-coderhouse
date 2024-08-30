@@ -9,7 +9,12 @@ export default function Navbar() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const [dropdownActive, setDropdownActive] = useState(false);
   const navOptions = [
-    new NavOption("Products", "", ["All", "T-Shirts", "Hoodies", "Mugs"]),
+    new NavOption("Products", "", [
+      new NavOption("All", "/"),
+      new NavOption("T-Shirts", "/category/t-shirts"),
+      new NavOption("Hoodies", "/category/hoodies"),
+      new NavOption("Mugs", "/category/mugs"),
+    ]),
     new NavOption("About us", "/about"),
     new NavOption("Contact", "/contact"),
   ]; // Array of nav options to be displayed
@@ -91,7 +96,11 @@ export default function Navbar() {
                             >
                               <NavButtonComponent
                                 className="dropdown-item"
-                                text={subOption}
+                                text={subOption.name}
+                                route={subOption.route}
+                                onClick={() => {
+                                  setDropdownActive(false);
+                                }}
                               />
                             </li>
                           );
