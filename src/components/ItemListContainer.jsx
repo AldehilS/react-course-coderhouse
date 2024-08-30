@@ -22,8 +22,8 @@ export default function ItemListContainer({ greeting }) {
 
   return (
     <>
-      <div className="container-fluid mt-5 mb-4 px-5 d-flex flex-column align-items-center">
-        <h1 className="h1">{greeting}</h1>
+      <main className="px-5 d-flex flex-column flex-grow-1 align-items-center">
+        <h1 className="h1 mt-5">{greeting}</h1>
         {id ? (
           <h2 className="h2">Category: {id}</h2>
         ) : (
@@ -38,7 +38,7 @@ export default function ItemListContainer({ greeting }) {
             />
           ))}
         </div>
-      </div>
+      </main>
     </>
   );
 }

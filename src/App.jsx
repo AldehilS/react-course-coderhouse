@@ -12,15 +12,47 @@ function App() {
       <BrowserRouter basename="/react-course-coderhouse/">
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<ItemListContainer greeting="Welcome to AldehilS Merch" />} />
+          <Route
+            exact
+            path="/"
+            element={<ItemListContainer greeting="Welcome to AldehilS Merch" />}
+          />
           {/** TODO: Implement ItemListContainer to load by category */}
-          <Route exact path="/category/:id" element={<ItemListContainer greeting="Welcome to AldehilS Merch" />} />
+          <Route
+            exact
+            path="/category/:id"
+            element={<ItemListContainer greeting="Welcome to AldehilS Merch" />}
+          />
           {/** TODO: Implement ItemDetailContainer */}
-          <Route exact path="/item/:id" element={<h1 className="h1 mt-5">Item Detail Container</h1>} />
+          <Route
+            exact
+            path="/item/:id"
+            element={
+              <main className="flex-grow-1">
+                <h1 className="h1 mt-5">Item Detail Container</h1>
+              </main>
+            }
+          />
           {/** TODO: Implement AboutContainer */}
-          <Route exact path="/about" element={<h1 className="h1 mt-5">About Container</h1>} />
+          <Route
+            exact
+            path="/about"
+            element={
+              <main className="flex-grow-1">
+                <h1 className="h1 mt-5">About Container</h1>
+              </main>
+            }
+          />
           {/** TODO: Implement ContactContainer */}
-          <Route exact path="/contact" element={<h1 className="h1 mt-5">Contact Container</h1>} />
+          <Route
+            exact
+            path="/contact"
+            element={
+              <main className="flex-grow-1">
+                <h1 className="h1 mt-5">Contact Container</h1>
+              </main>
+            }
+          />
         </Routes>
         <Footer name="Aldehil Sánchez" />
       </BrowserRouter>
