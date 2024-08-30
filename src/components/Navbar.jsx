@@ -9,7 +9,7 @@ export default function Navbar() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const [dropdownActive, setDropdownActive] = useState(false);
   const navOptions = [
-    new NavOption("Products", ["T-Shirts", "Hoodies", "Mugs"]),
+    new NavOption("Products", ["All", "T-Shirts", "Hoodies", "Mugs"]),
     new NavOption("About us"),
     new NavOption("Contact"),
   ]; // Array of nav options to be displayed
