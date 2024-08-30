@@ -4,6 +4,7 @@ import CartWidget from "./CartWidget";
 import Logo from "../assets/logo.png";
 import "../styles/Navbar.css";
 import { NavOption } from "../NavOption";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
@@ -34,10 +35,15 @@ export default function Navbar() {
         data-bs-theme="dark"
       >
         <div className="container-fluid row">
-          <a className="navbar-brand col-12 col-md-auto" href="./">
+          <Link to={"/"} className="navbar-brand col-12 col-md-auto"
+            onClick={() => {
+              handleButtonClick(0);
+              setDropdownActive(false);
+            }}
+          >
             <img src={Logo} alt="Aldehil's logo" />
             AldehilS Merch
-          </a>
+          </Link>
           <div className="col-12 col-md-auto d-flex flex-row justify-content-end">
             <button
               className="navbar-toggler"
@@ -100,6 +106,7 @@ export default function Navbar() {
                                 route={subOption.route}
                                 onClick={() => {
                                   setDropdownActive(false);
+                                  handleButtonClick(0);
                                 }}
                               />
                             </li>
