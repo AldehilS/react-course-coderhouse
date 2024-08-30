@@ -7,9 +7,10 @@ import Footer from "./components/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
+  const baseURL = import.meta.env.BASE_URL;
   return (
     <>
-      <BrowserRouter basename="/react-course-coderhouse/">
+      <BrowserRouter basename={baseURL}>
         <Navbar />
         <Routes>
           <Route
