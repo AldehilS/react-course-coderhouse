@@ -13,7 +13,14 @@ export default function ItemListContainer({ greeting }) {
         return response.json();
       })
       .then((data) => {
-        setProducts(data);
+        if (id) {
+          const productsFiltered = data.filter(
+            (product) => product.category === id
+          );
+          setProducts(productsFiltered);
+        } else {
+          setProducts(data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
