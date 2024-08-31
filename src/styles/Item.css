@@ -1,0 +1,12 @@
+.card {
+  background-color: rgb(190, 187, 187);
+}
+
+.card:hover {
+  background-color: rgb(104, 104, 104);
+  color: white;
+}
+
+.card:hover small.text-muted {
+  color: white;
+}

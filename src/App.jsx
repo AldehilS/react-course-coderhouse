@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import ItemListContainer from "./components/ItemListContainer";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import About from "./components/About";
 
 function App() {
   const baseURL = import.meta.env.BASE_URL;
@@ -38,11 +39,7 @@ function App() {
           <Route
             exact
             path="/about"
-            element={
-              <main className="flex-grow-1">
-                <h1 className="h1 mt-5">About Container</h1>
-              </main>
-            }
+            element={<About />}
           />
           {/** TODO: Implement ContactContainer */}
           <Route
@@ -50,7 +47,7 @@ function App() {
             path="/contact"
             element={
               <main className="flex-grow-1">
-                <h1 className="h1 mt-5">Contact Container</h1>
+                <h1 className="h1 mt-5 text-white">Contact Container</h1>
               </main>
             }
           />

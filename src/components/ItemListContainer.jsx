@@ -23,11 +23,11 @@ export default function ItemListContainer({ greeting }) {
   return (
     <>
       <main className="px-5 d-flex flex-column flex-grow-1 align-items-center">
-        <h1 className="h1 mt-5">{greeting}</h1>
+        <h1 className="h1 mt-5 text-white">{greeting}</h1>
         {id ? (
-          <h2 className="h2">Category: {id}</h2>
+          <h2 className="h2 text-white">Category: {id}</h2>
         ) : (
-          <h2 className="h2">Showing all products</h2>
+          <h2 className="h2 text-white">Showing all products</h2>
         )}
         <div className="container-fluid row mt-5">
           {products.map((product) => (

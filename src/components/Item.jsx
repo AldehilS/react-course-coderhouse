@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import "../styles/Item.css";
 
 export default function Item({ product, baseURL }) {
+
   return (
     <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3 p-4">
       <Link to={`/item/${product.id}`}>
-        <div className="card h-100">
+        <div
+          className="card h-100 rounded-3">
           <img
             src={`${baseURL}/products/${product.image}`}
             className="card-img-top h-75 object-fit-contain"
