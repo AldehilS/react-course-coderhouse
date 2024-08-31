@@ -3,10 +3,22 @@ import NavButtonComponent from "./NavButtonComponent";
 import CartWidget from "./CartWidget";
 import Logo from "../assets/logo.png";
 import "../styles/Navbar.css";
+import { NavOption } from "../NavOption";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0);
-  const navOptions = ["Products", "About us", "Contact"]; // Array of nav options to be displayed
+  const [dropdownActive, setDropdownActive] = useState(false);
+  const navOptions = [
+    new NavOption("Products", "", [
+      new NavOption("All", "/"),
+      new NavOption("T-Shirts", "/category/t-shirts"),
+      new NavOption("Hoodies", "/category/hoodies"),
+      new NavOption("Mugs", "/category/mugs"),
+    ]),
+    new NavOption("About us", "/about"),
+    new NavOption("Contact", "/contact"),
+  ]; // Array of nav options to be displayed
 
   /**
    * Handle button click event, set to active the clicked button.
@@ -19,14 +31,19 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="navbar navbar-expand-md bg-dark justify-content-center pb-3"
+        className="navbar navbar-expand-md bg-dark justify-content-center pb-3 sticky-md-top"
         data-bs-theme="dark"
       >
         <div className="container-fluid row">
-          <a className="navbar-brand col-12 col-md-auto" href="./">
+          <Link to={"/"} className="navbar-brand col-12 col-md-auto"
+            onClick={() => {
+              handleButtonClick(0);
+              setDropdownActive(false);
+            }}
+          >
             <img src={Logo} alt="Aldehil's logo" />
             AldehilS Merch
-          </a>
+          </Link>
           <div className="col-12 col-md-auto d-flex flex-row justify-content-end">
             <button
               className="navbar-toggler"
@@ -35,6 +52,7 @@ export default function Navbar() {
               aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
+              onClick={() => setDropdownActive(false)}
             >
               <span className="navbar-toggler-icon" />
             </button>
@@ -49,12 +67,55 @@ export default function Navbar() {
               {/* Generation of navButtons using array */}
               {navOptions.map((option, index) => {
                 return (
-                  <li key={index} className="nav-item">
+                  <li
+                    key={`NavButton${index}`}
+                    className={`nav-item ${
+                      option.options.length > 0 ? "dropdown" : ""
+                    } d-flex flex-column align-items-center d-md-block`}
+                  >
                     <NavButtonComponent
-                      className={index === activeButtonIndex ? "active" : ""}
-                      text={option}
-                      onClick={() => handleButtonClick(index)}
+                      className={`${
+                        index === activeButtonIndex ? "active " : ""
+                      } ${option.options.length > 0 ? "dropdown-toggle" : ""}`}
+                      text={option.name}
+                      onClick={
+                        option.options.length > 0
+                          ? () => setDropdownActive(!dropdownActive)
+                          : () => {
+                              handleButtonClick(index);
+                              setDropdownActive(false);
+                            }
+                      }
+                      route={option.route}
                     />
+                    {option.options.length > 0 ? (
+                      <ul
+                        className={`dropdown-menu ${
+                          dropdownActive ? "show" : ""
+                        }`}
+                      >
+                        {option.options.map((subOption, subIndex) => {
+                          return (
+                            <li
+                              key={`SubNavButton${subIndex}`}
+                              className="nav-item px-2 px-md-0"
+                            >
+                              <NavButtonComponent
+                                className="dropdown-item"
+                                text={subOption.name}
+                                route={subOption.route}
+                                onClick={() => {
+                                  setDropdownActive(false);
+                                  handleButtonClick(0);
+                                }}
+                              />
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <></>
+                    )}
                   </li>
                 );
               })}
