@@ -23,8 +23,8 @@ export default function ItemDetailContainer() {
   return (
     <>
       <main className="flex-grow-1 d-flex flex-column align-items-center">
-        <h1 className="h1 text-white pt-5">{product.name}</h1>
-        <div className="container row mt-4">
+        <h1 className="h1 text-white mt-3">{product.name}</h1>
+        <div className="container row pt-3">
           <div className="col-12 col-md-6" style={{aspectRatio: "1/1"}}>
             <img
               src={`${baseURL}products/${product.image}`}

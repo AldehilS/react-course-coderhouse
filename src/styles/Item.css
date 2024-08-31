@@ -7,6 +7,6 @@
   color: white;
 }
 
-.card:hover small.text-muted {
-  color: white;
+.card:hover div p.text-body-secondary {
+  color: rgb(211, 211, 211) !important;
 }
