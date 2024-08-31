@@ -6,6 +6,7 @@ import ItemListContainer from "./components/ItemListContainer";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
+import ItemDetailContainer from "./components/itemDetailContainer";
 
 function App() {
   const baseURL = import.meta.env.BASE_URL;
@@ -25,17 +26,11 @@ function App() {
             path="/category/:id"
             element={<ItemListContainer greeting="Welcome to AldehilS Merch" />}
           />
-          {/** TODO: Implement ItemDetailContainer */}
           <Route
             exact
             path="/item/:id"
-            element={
-              <main className="flex-grow-1">
-                <h1 className="h1 mt-5">Item Detail Container</h1>
-              </main>
-            }
+            element={<ItemDetailContainer />}
           />
-          {/** TODO: Implement AboutContainer */}
           <Route
             exact
             path="/about"

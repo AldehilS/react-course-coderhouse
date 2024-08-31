@@ -9,7 +9,7 @@ export default function Item({ product, baseURL }) {
         <div
           className="card h-100 rounded-3">
           <img
-            src={`${baseURL}/products/${product.image}`}
+            src={`${baseURL}products/${product.image}`}
             className="card-img-top h-75 object-fit-contain"
             alt={product.name}
           />
