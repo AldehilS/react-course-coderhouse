@@ -19,5 +19,14 @@ Imagen de <a href="https://pixabay.com/es/users/mrbaydar-15337266/?utm_source=li
 src/assets/products/hoodie2.png
 https://www.freepik.com/free-photo/black-hoodie-with-zipper_13237308.htm#fromView=search&page=1&position=19&uuid=84a2b92a-1704-41b3-b221-2fadc158b14f
 
+src/assets/products/hoode3.png
+https://www.freepik.es/vector-gratis/sudaderas-capucha-realistas-maquetas-sudaderas-capucha-color-verde-ilustracion-vectorial-aislada_37916560.htm#fromView=search&page=1&position=13&uuid=693274d3-3a03-4e32-b41d-a65b4fe2a9fb
+
+src/assets/products/hoodie4.png
+https://www.freepik.es/foto-gratis/deportista_3615914.htm#fromView=search&page=1&position=33&uuid=75c53390-1927-4f1e-b5e5-df8a90fb9d9d
+
+src/assets/products/hoodie5.png
+https://www.freepik.es/foto-gratis/senorita-sudadera-capucha-gran-tamano-pantalones-mostrando-gesto-corazon-luciendo-linda-vista-frontal_13577136.htm#fromView=search&page=1&position=2&uuid=693274d3-3a03-4e32-b41d-a65b4fe2a9fb
+
 src/assets/products/placeholder.svg
 https://www.freepik.com/free-vector/load-more-concept-illustration_9793182.htm#fromView=search&page=1&position=29&uuid=f82de039-5f91-4a50-9319-8374cdc34e29

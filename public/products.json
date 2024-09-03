@@ -59,7 +59,7 @@
     "id": 8,
     "name": "Pullover Hoodie",
     "price": 44.99,
-    "image": "placeholder.svg",
+    "image": "hoodie3.png",
     "description": "Pullover hoodie with a soft, fleece interior.",
     "category": "hoodies"
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "name": "Sport Hoodie",
     "price": 49.99,
-    "image": "placeholder.svg",
+    "image": "hoodie4.png",
     "description": "Lightweight hoodie designed for athletic activities.",
     "category": "hoodies"
   },
@@ -75,7 +75,7 @@
     "id": 10,
     "name": "Oversized Hoodie",
     "price": 46.99,
-    "image": "placeholder.svg",
+    "image": "hoodie5.png",
     "description": "Comfortable oversized hoodie for a relaxed fit.",
     "category": "hoodies"
   },
