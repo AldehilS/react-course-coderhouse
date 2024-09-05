@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ProductCounter from "./ProductCounter";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -33,12 +34,13 @@ export default function ItemDetailContainer() {
               style={{backgroundColor: "rgb(190, 187, 187)"}}
             />
           </div>
-          <div className="col-12 col-md-6">
+          <div className="d-flex flex-column col-12 col-md-6">
             <h2 className="h2 text-white text-start mt-3 mt-md-0">Description:</h2>
             <p className="lead text-white text-start">{product.description}</p>
             <h2 className="h2 text-white text-start">Price:</h2>
             <p className="lead text-white text-start">${product.price}</p>
             {/** TODO: Implement a component to add a number of products to the cart  */}
+            <ProductCounter />
           </div>
         </div>
       </main>

@@ -19,5 +19,29 @@ Imagen de <a href="https://pixabay.com/es/users/mrbaydar-15337266/?utm_source=li
 src/assets/products/hoodie2.png
 https://www.freepik.com/free-photo/black-hoodie-with-zipper_13237308.htm#fromView=search&page=1&position=19&uuid=84a2b92a-1704-41b3-b221-2fadc158b14f
 
+src/assets/products/hoode3.png
+https://www.freepik.es/vector-gratis/sudaderas-capucha-realistas-maquetas-sudaderas-capucha-color-verde-ilustracion-vectorial-aislada_37916560.htm#fromView=search&page=1&position=13&uuid=693274d3-3a03-4e32-b41d-a65b4fe2a9fb
+
+src/assets/products/hoodie4.png
+https://www.freepik.es/foto-gratis/deportista_3615914.htm#fromView=search&page=1&position=33&uuid=75c53390-1927-4f1e-b5e5-df8a90fb9d9d
+
+src/assets/products/hoodie5.png
+https://www.freepik.es/foto-gratis/senorita-sudadera-capucha-gran-tamano-pantalones-mostrando-gesto-corazon-luciendo-linda-vista-frontal_13577136.htm#fromView=search&page=1&position=2&uuid=693274d3-3a03-4e32-b41d-a65b4fe2a9fb
+
+src/assets/products/mug1.png
+https://www.freepik.es/foto-gratis/dos-tazas-sobre-fondo-negro_19699775.htm#fromView=search&page=1&position=2&uuid=dfdbb746-92b7-47ba-9df9-19f622efdad7
+
+src/assets/products/mug2.png
+https://www.freepik.es/vector-gratis/termo-viaje-cerrado-metal-vector-vista-frontal-taza-aislada-sobre-fondo-blanco_11058697.htm#fromView=search&page=1&position=25&uuid=1636deab-9e70-4162-bae0-debda902f25d
+
+src/assets/products/mug3.png
+https://www.freepik.es/foto-gratis/tiro-vertical-taza-ceramica-blanca-sobre-superficie-blanca_8070270.htm#fromView=search&page=2&position=49&uuid=479b63c0-c6ee-448a-a8b1-26382dea6f7b
+
+src/assets/products/mug4.png
+Generated with microsoft copilot: https://www.bing.com/images/create/una-taza-de-cafc3a9-con-una-frase-divertida-escrita-e/1-66da2c823f804831817ea32302eca968?id=pg2iwl2GSA1dkTOFTLJBFQ%3d%3d&view=detailv2&idpp=genimg&idpclose=1&thId=OIG4.lzFSfkfzEWSyyyyeZqsT&skey=_EvLujgN9B7T1XojxvKANMUlxy6n7Ftn3APUSxy-h_k&FORM=SYDBIC
+
+src/assets/products/mug5.png
+https://www.kindpng.com/imgv/hRRRwiR_magic-mug-png-transparent-png/
+
 src/assets/products/placeholder.svg
 https://www.freepik.com/free-vector/load-more-concept-illustration_9793182.htm#fromView=search&page=1&position=29&uuid=f82de039-5f91-4a50-9319-8374cdc34e29
