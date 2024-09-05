@@ -83,7 +83,7 @@
     "id": 11,
     "name": "Classic Ceramic Mug",
     "price": 12.99,
-    "image": "placeholder.svg",
+    "image": "mug1.png",
     "description": "Classic ceramic mug perfect for coffee or tea.",
     "category": "mugs"
   },
@@ -91,7 +91,7 @@
     "id": 12,
     "name": "Travel Mug",
     "price": 18.99,
-    "image": "placeholder.svg",
+    "image": "mug2.png",
     "description": "Insulated travel mug with spill-proof lid.",
     "category": "mugs"
   },
@@ -99,7 +99,7 @@
     "id": 13,
     "name": "Large Coffee Mug",
     "price": 14.99,
-    "image": "placeholder.svg",
+    "image": "mug3.png",
     "description": "Oversized coffee mug for the true coffee lover.",
     "category": "mugs"
   },
@@ -107,7 +107,7 @@
     "id": 14,
     "name": "Funny Quote Mug",
     "price": 13.99,
-    "image": "placeholder.svg",
+    "image": "mug4.png",
     "description": "Mug with a funny quote to brighten your day.",
     "category": "mugs"
   },
@@ -115,7 +115,7 @@
     "id": 15,
     "name": "Color Changing Mug",
     "price": 15.99,
-    "image": "placeholder.svg",
+    "image": "mug5.png",
     "description": "Magic color-changing mug that reveals a design when hot.",
     "category": "mugs"
   }
