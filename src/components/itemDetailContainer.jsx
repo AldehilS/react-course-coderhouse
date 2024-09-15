@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductCounter from "./ProductCounter";
+import ItemQuantitySelector from "./ProductCounter";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -40,7 +40,7 @@ export default function ItemDetailContainer() {
             <h2 className="h2 text-white text-start">Price:</h2>
             <p className="lead text-white text-start">${product.price}</p>
             {/** TODO: Implement a component to add a number of products to the cart  */}
-            <ProductCounter />
+            <ItemQuantitySelector />
           </div>
         </div>
       </main>

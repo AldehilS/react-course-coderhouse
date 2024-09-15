@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ProductCounter() {
+export default function ItemQuantitySelector() {
   const [quantity, setQuantity] = useState(0);
 
   function handleDecrement() {
