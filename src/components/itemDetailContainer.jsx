@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemQuantitySelector from "./ProductCounter";
+import ItemQuantitySelector from "./ItemQuantitySelector";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
