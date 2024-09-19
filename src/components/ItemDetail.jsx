@@ -1,3 +1,4 @@
+import Description from "./Description";
 import ItemQuantitySelector from "./ItemQuantitySelector";
 
 export default function ItemDetail({ product, baseURL }) {
@@ -15,13 +16,7 @@ export default function ItemDetail({ product, baseURL }) {
             />
           </div>
           <div className="d-flex flex-column col-12 col-md-6">
-            {/** TODO: Implement a description component to encapsulate the description and price*/}
-            <h2 className="h2 text-white text-start mt-3 mt-md-0">
-              Description:
-            </h2>
-            <p className="lead text-white text-start">{product.description}</p>
-            <h2 className="h2 text-white text-start">Price:</h2>
-            <p className="lead text-white text-start">${product.price}</p>
+            <Description description={product.description} price={product.price} />
             <ItemQuantitySelector />
             {/** TODO: Implement an add to cart button component */}
           </div>
