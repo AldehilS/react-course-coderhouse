@@ -6,6 +6,7 @@ export default function ItemDetailContainer() {
   const { id } = useParams();
   const baseURL = import.meta.env.BASE_URL;
   const [product, setProduct] = useState({});
+  const [productQuantity, setProductQuantity] = useState(1);
 
   useEffect(() => {
     fetch(`${baseURL}products.json`)
@@ -13,7 +14,9 @@ export default function ItemDetailContainer() {
         return response.json();
       })
       .then((data) => {
-        const productFiltered = data.find((product) => product.id.toString() === id);
+        const productFiltered = data.find(
+          (product) => product.id.toString() === id
+        );
         setProduct(productFiltered);
       })
       .catch((error) => {
@@ -23,7 +26,12 @@ export default function ItemDetailContainer() {
 
   return (
     <>
-      <ItemDetail product={product} baseURL={baseURL} />
+      <ItemDetail
+        product={product}
+        baseURL={baseURL}
+        productQuantity={productQuantity}
+        setProductQuantity={setProductQuantity}
+      />
     </>
   );
 }

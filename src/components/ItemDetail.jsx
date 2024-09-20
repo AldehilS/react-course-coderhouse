@@ -1,7 +1,13 @@
+import AddItemButton from "./AddItemButton";
 import Description from "./Description";
 import ItemQuantitySelector from "./ItemQuantitySelector";
 
-export default function ItemDetail({ product, baseURL }) {
+export default function ItemDetail({
+  product,
+  baseURL,
+  productQuantity,
+  setProductQuantity,
+}) {
   return (
     <>
       <main className="flex-grow-1 d-flex flex-column align-items-center">
@@ -16,9 +22,18 @@ export default function ItemDetail({ product, baseURL }) {
             />
           </div>
           <div className="d-flex flex-column col-12 col-md-6">
-            <Description description={product.description} price={product.price} />
-            <ItemQuantitySelector />
-            {/** TODO: Implement an add to cart button component */}
+            <Description
+              description={product.description}
+              price={product.price}
+            />
+            <ItemQuantitySelector
+              productQuantity={productQuantity}
+              setProductQuantity={setProductQuantity}
+            />
+            <AddItemButton
+              productQuantity={productQuantity}
+              productId={product.id}
+            />
           </div>
         </div>
       </main>
