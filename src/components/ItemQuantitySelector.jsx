@@ -13,28 +13,30 @@ export default function ItemQuantitySelector({
   }
 
   return (
-    <div
-      className="d-flex align-self-center justify-content-between align-items-center w-50 w-md-25 rounded-2"
-      style={{ backgroundColor: "rgba(255,255,255,0.6)" }}
-    >
-      <button
-        className={`btn btn-primary w-25 ${
-          productQuantity <= 1 ? "disabled" : ""
-        }`}
-        w-25
-        style={{ minWidth: "40px" }}
-        onClick={handleDecrement}
+    <>
+      <div
+        className="d-flex align-self-center justify-content-between align-items-center w-50 w-md-25 rounded-2"
+        style={{ backgroundColor: "rgba(255,255,255,0.6)" }}
       >
-        -
-      </button>
-      <span className="mx-3">{productQuantity}</span>
-      <button
-        className="btn btn-primary w-25"
-        style={{ minWidth: "40px" }}
-        onClick={handleIncrement}
-      >
-        +
-      </button>
-    </div>
+        <button
+          className={`btn btn-primary w-25 ${
+            productQuantity <= 1 ? "disabled" : ""
+          }`}
+          w-25
+          style={{ minWidth: "40px" }}
+          onClick={handleDecrement}
+        >
+          -
+        </button>
+        <span className="mx-3">{productQuantity}</span>
+        <button
+          className="btn btn-primary w-25"
+          style={{ minWidth: "40px" }}
+          onClick={handleIncrement}
+        >
+          +
+        </button>
+      </div>
+    </>
   );
 }
