@@ -33,6 +33,7 @@ export default function ItemDetail({
             <AddItemButton
               productQuantity={productQuantity}
               productId={product.id}
+              setProductQuantity={setProductQuantity}
             />
           </div>
         </div>
