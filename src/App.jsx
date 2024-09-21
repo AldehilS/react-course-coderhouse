@@ -48,6 +48,7 @@ function App() {
                 </main>
               }
             />
+            <Route exact path="/checkout" element={<main className="flex-grow-1"><h1>Checkout</h1></main>} />
           </Routes>
         </CartContextProvider>
         <Footer name="Aldehil Sánchez" />
