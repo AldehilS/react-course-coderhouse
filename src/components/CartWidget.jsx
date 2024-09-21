@@ -12,7 +12,7 @@ export default function CartWidget({ className, onClick }) {
     <>
       <IconContext.Provider value={{ size: "2em" }}>
         <Link
-          to={"/checkout"}
+          to={"/cart"}
           className={"btn nav-link position-relative m-3 " + className}
           onClick={onClick}
           aria-label="Shopping Cart"

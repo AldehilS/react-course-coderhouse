@@ -8,6 +8,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import ItemDetailContainer from "./components/itemDetailContainer";
 import CartContextProvider from "./components/CartContext";
+import Checkout from "./components/Checkout";
+import Brief from "./components/Brief";
 
 function App() {
   const baseURL = import.meta.env.BASE_URL;
@@ -20,24 +22,20 @@ function App() {
             <Route
               exact
               path="/"
-              element={<ItemListContainer greeting="Welcome to AldehilS Merch" />}
+              element={
+                <ItemListContainer greeting="Welcome to AldehilS Merch" />
+              }
             />
             {/** TODO: Implement ItemListContainer to load by category */}
             <Route
               exact
               path="/category/:id"
-              element={<ItemListContainer greeting="Welcome to AldehilS Merch" />}
+              element={
+                <ItemListContainer greeting="Welcome to AldehilS Merch" />
+              }
             />
-            <Route
-              exact
-              path="/item/:id"
-              element={<ItemDetailContainer />}
-            />
-            <Route
-              exact
-              path="/about"
-              element={<About />}
-            />
+            <Route exact path="/item/:id" element={<ItemDetailContainer />} />
+            <Route exact path="/about" element={<About />} />
             {/** TODO: Implement ContactContainer */}
             <Route
               exact
@@ -48,7 +46,8 @@ function App() {
                 </main>
               }
             />
-            <Route exact path="/checkout" element={<main className="flex-grow-1"><h1>Checkout</h1></main>} />
+            <Route exact path="/checkout" element={<Checkout />} />
+            <Route exact path="/cart" element={<Brief />} />
           </Routes>
         </CartContextProvider>
         <Footer name="Aldehil Sánchez" />
