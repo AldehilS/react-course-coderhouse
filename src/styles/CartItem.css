@@ -10,4 +10,8 @@
   .cartitem img {
     width: 25%;
   }
+
+  .delete-icon {
+    font-size: 30px;
+  }
 }

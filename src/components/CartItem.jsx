@@ -1,26 +1,8 @@
-import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import "../styles/CartItem.css";
 
-export default function CartItem({ id, quantity, onDelete }) {
+export default function CartItem({ product, quantity, onDelete }) {
   const baseURL = import.meta.env.BASE_URL;
-  const [product, setProduct] = useState({});
-
-  useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const productFiltered = data.find(
-          (product) => product.id.toString() === id
-        );
-        setProduct(productFiltered);
-      })
-      .catch((error) => {
-        console.error("Error fetching product:", error);
-      });
-  }, [id]);
 
   return (
     <>
