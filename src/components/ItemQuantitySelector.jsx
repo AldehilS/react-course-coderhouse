@@ -22,7 +22,6 @@ export default function ItemQuantitySelector({
           className={`btn btn-primary w-25 ${
             productQuantity <= 1 ? "disabled" : ""
           }`}
-          w-25
           style={{ minWidth: "40px" }}
           onClick={handleDecrement}
         >
