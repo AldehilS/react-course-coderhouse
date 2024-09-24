@@ -8,7 +8,7 @@ export default function CartItem({ product, quantity, onDelete }) {
     <>
       <button
         className="btn btn-secondary position-absolute top-0 end-0 p-1 mt-2 me-2"
-        onClick={() => onDelete(id)}
+        onClick={() => onDelete(product.id)}
       >
         <MdDelete className="delete-icon" />
       </button>
