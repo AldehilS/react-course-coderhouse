@@ -1,36 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
 import { Link } from "react-router-dom";
 
 export default function Brief() {
-  const { cart, setCart } = useContext(CartContext);
-  const [cartProducts, setCartProducts] = useState([]);
-  const baseURL = import.meta.env.BASE_URL;
+  const { cart, setCart, cartProducts } = useContext(CartContext);
 
   function deleteCartItem(id) {
     const newCart = { ...cart };
     delete newCart[id];
     setCart(newCart);
   }
-
-  useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const products = [];
-        data.forEach((product) => {
-          cart[product.id] ? products.push(product) : null;
-        });
-        setCartProducts(products);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, [cart]);
 
   return (
     <>
