@@ -7,6 +7,7 @@ export default function CartContextProvider({ children }) {
 
   const [cart, setCart] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
+  const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     fetch(`${baseURL}products.json`)
@@ -25,9 +26,17 @@ export default function CartContextProvider({ children }) {
       });
   }, [cart]);
 
+  useEffect(() => {
+    const subtotal = cartProducts.reduce((acc, { id, price }) => {
+      return acc + price * cart[id];
+    }, 0);
+
+    setSubtotal(subtotal);
+  }, [cartProducts]);
+
   return (
     <>
-      <CartContext.Provider value={{cart, setCart, cartProducts}}>
+      <CartContext.Provider value={{cart, setCart, cartProducts, subtotal}}>
         {children}
       </CartContext.Provider>
     </>

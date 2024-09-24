@@ -5,7 +5,7 @@ import OrderSummary from "./OrderSummary";
 import { Link } from "react-router-dom";
 
 export default function Brief() {
-  const { cart, setCart, cartProducts } = useContext(CartContext);
+  const { cart, setCart, cartProducts, subtotal } = useContext(CartContext);
 
   function deleteCartItem(id) {
     const newCart = { ...cart };
@@ -41,9 +41,7 @@ export default function Brief() {
               <div className="col-12 col-md-4 p-4">
                 <OrderSummary
                   title="Order Summary"
-                  subtotal={cartProducts.reduce((acc, { id, price }) => {
-                    return acc + price * cart[id];
-                  }, 0)}
+                  subtotal={subtotal}
                 >
                   <Link
                     to="/checkout"
