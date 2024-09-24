@@ -26,7 +26,6 @@ function App() {
                 <ItemListContainer greeting="Welcome to AldehilS Merch" />
               }
             />
-            {/** TODO: Implement ItemListContainer to load by category */}
             <Route
               exact
               path="/category/:id"
