@@ -37,7 +37,7 @@ export default function Brief() {
         <h1 className="h1 mt-3 text-white">Your Cart</h1>
         <div className="row">
           {cartProducts.length === 0 ? (
-            <h2 className="h2">Your cart is empty</h2>
+            <h2 className="h2 text-white">Your cart is empty</h2>
           ) : (
             <>
               <ul className="list-group col-12 col-md-8 px-4">
