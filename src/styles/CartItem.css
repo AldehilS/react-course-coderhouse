@@ -1,0 +1,17 @@
+.cartitem img {
+  width: 60%;
+}
+
+.delete-icon {
+  font-size: 40px;
+}
+
+@media (min-width: 768px) {
+  .cartitem img {
+    width: 25%;
+  }
+
+  .delete-icon {
+    font-size: 30px;
+  }
+}

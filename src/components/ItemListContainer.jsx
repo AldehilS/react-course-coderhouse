@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Item from "./Item";
+import ItemList from "./ItemList";
 
 export default function ItemListContainer({ greeting }) {
   const { id } = useParams();
@@ -36,15 +36,7 @@ export default function ItemListContainer({ greeting }) {
         ) : (
           <h2 className="h2 text-white">Showing all products</h2>
         )}
-        <div className="container-fluid row mt-5">
-          {products.map((product) => (
-            <Item
-              key={`product${product.id}`}
-              product={product}
-              baseURL={baseURL}
-            />
-          ))}
-        </div>
+        <ItemList products={products} baseURL={baseURL} />
       </main>
     </>
   );
