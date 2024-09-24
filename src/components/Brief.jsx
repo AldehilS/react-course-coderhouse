@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
+import { Link } from "react-router-dom";
 
 export default function Brief() {
   const { cart, setCart } = useContext(CartContext);
@@ -58,10 +59,18 @@ export default function Brief() {
               </ul>
               <div className="col-12 col-md-4 p-4">
                 <OrderSummary
-                  subtotal={cartProducts.reduce((acc, {id, price}) => {
+                  title="Order Summary"
+                  subtotal={cartProducts.reduce((acc, { id, price }) => {
                     return acc + price * cart[id];
                   }, 0)}
-                />
+                >
+                  <Link
+                    to="/checkout"
+                    className="btn btn-warning"
+                  >
+                    Proceed to checkout
+                  </Link>
+                </OrderSummary>
               </div>
             </>
           )}
