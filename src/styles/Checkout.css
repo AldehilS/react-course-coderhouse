@@ -1,0 +1,7 @@
+.checkout-main > * {
+    max-height: 60vh;
+}
+
+.checkout-main > ul {
+    overflow-y: auto;
+}

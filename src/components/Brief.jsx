@@ -17,7 +17,7 @@ export default function Brief() {
     <>
       <main className="flex-grow-1" data-bs-theme="dark">
         <h1 className="h1 mt-3 text-white">Your Cart</h1>
-        <div className="row">
+        <div className="row g-0">
           {cartProducts.length === 0 ? (
             <h2 className="h2 text-white">Your cart is empty</h2>
           ) : (
