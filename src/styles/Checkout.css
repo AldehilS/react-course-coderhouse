@@ -1,7 +1,4 @@
-.checkout-main > * {
+.checkout-main div ul {
     max-height: 60vh;
-}
-
-.checkout-main > ul {
     overflow-y: auto;
 }

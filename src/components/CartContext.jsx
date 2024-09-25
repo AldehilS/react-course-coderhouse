@@ -9,6 +9,12 @@ export default function CartContextProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
 
+  function deleteCartItem(id) {
+    const newCart = { ...cart };
+    delete newCart[id];
+    setCart(newCart);
+  }
+
   useEffect(() => {
     fetch(`${baseURL}products.json`)
       .then((response) => {
@@ -36,7 +42,9 @@ export default function CartContextProvider({ children }) {
 
   return (
     <>
-      <CartContext.Provider value={{cart, setCart, cartProducts, subtotal}}>
+      <CartContext.Provider
+        value={{ cart, setCart, cartProducts, subtotal, deleteCartItem }}
+      >
         {children}
       </CartContext.Provider>
     </>
