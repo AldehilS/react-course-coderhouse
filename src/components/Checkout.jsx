@@ -9,9 +9,9 @@ export default function Checkout() {
 
   return (
     <>
-      <main className="flex-grow-1 row checkout-main g-0" data-bs-theme="dark">
+      <main className="flex-grow-1 row checkout-main g-0 px-2" data-bs-theme="dark">
         <h1 className="h1 mt-3 text-white col-12">Checkout</h1>
-        <ul className="list-group bg-dark col-12 col-md-6 col-lg-4 rounded-3">
+        <ul className="list-group bg-dark col-12 col-md-6 col-lg-4 p-3 rounded-3">
           <h2 className="h2 text-white">1. Review your order summary.</h2>
           {cartProducts.map((product) => {
             return (
@@ -26,10 +26,14 @@ export default function Checkout() {
           <h3 className="h3 text-white text-end">Subtotal: ${subtotal}</h3>
         </ul>
         <div className="container col-12 col-md-6 col-lg-4">
-          <OrderSummary title="1. Review your order summary." subtotal={subtotal} />
+          
         </div>
         <div className="container col-12 col-md-6 col-lg-4">
-
+          <OrderSummary title="3. Pay" subtotal={subtotal}>
+            <button className="btn btn-warning w-50" type="button">
+              Pay
+            </button>
+          </OrderSummary>
         </div>
       </main>
     </>
