@@ -1,12 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "./CartContext";
 import OrderSummary from "./OrderSummary";
 import CartItem from "./CartItem";
 import "../styles/Checkout.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
+  const baseURL = import.meta.env.BASE_URL;
+  const navigate = useNavigate();
+
   const { subtotal, cartProducts, cart, deleteCartItem } =
     useContext(CartContext);
+
+  useEffect(() => {
+    if (cartProducts.length === 0) {
+      navigate(`${baseURL}`);
+    }
+  }, [cartProducts]);
 
   return (
     <>
@@ -22,7 +32,7 @@ export default function Checkout() {
               return (
                 <>
                   <li
-                    key={product.id}
+                    key={`checkout-cartProduct-${product.id}`}
                     className="list-group-item my-2 rounded-3"
                   >
                     <CartItem

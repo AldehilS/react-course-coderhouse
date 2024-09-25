@@ -21,7 +21,7 @@ export default function Brief() {
                 {cartProducts.map((product) => {
                   return (
                     <li
-                      key={product.id}
+                      key={`brief-cartProduct-${product.id}`}
                       className="list-group-item my-2 rounded-3"
                     >
                       <CartItem
