@@ -23,7 +23,7 @@ export default function CartItem({ product, quantity, onDelete }) {
           <p>Quantity: {quantity}</p>
           <p>Unit price: ${product.price}</p>
         </div>
-        <h3 className="h3">Total: ${product.price * quantity}</h3>
+        <h3 className="h3">Total: ${(product.price * quantity).toFixed(2)}</h3>
       </div>
     </>
   );
