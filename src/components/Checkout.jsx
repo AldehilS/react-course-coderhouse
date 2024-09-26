@@ -5,6 +5,7 @@ import CartItem from "./CartItem";
 import "../styles/Checkout.css";
 import { useNavigate } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
+import PaymentForm from "./PaymentForm";
 
 export default function Checkout() {
   const baseURL = import.meta.env.BASE_URL;
@@ -60,13 +61,7 @@ export default function Checkout() {
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
           <OrderSummary title="3. Pay" subtotal={subtotal}>
-            <button
-              className="btn btn-warning w-50"
-              type="button"
-              disabled={!formWasValidated}
-            >
-              Pay
-            </button>
+            <PaymentForm formWasValidated={formWasValidated} />
             {formWasValidated || (
               <p className="text-warning">
                 You need to save your information to proceed with the payment
