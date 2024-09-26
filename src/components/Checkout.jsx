@@ -6,6 +6,7 @@ import "../styles/Checkout.css";
 import { useNavigate } from "react-router-dom";
 import CustomerInfoForm from "./CustomerInfoForm";
 import PaymentForm from "./PaymentForm";
+import Swal from "sweetalert2";
 
 export default function Checkout() {
   const baseURL = import.meta.env.BASE_URL;
@@ -25,10 +26,27 @@ export default function Checkout() {
     }
   }, [cartProducts]);
 
+  /**
+   * This effect will be triggered when both forms are validated.
+   * It will  register the order and show a success message.
+   * If the user clicks on "Go to home", it will redirect to the home page.
+   */
   useEffect(() => {
     if (customerFormWasValidated && paymentFormWasValidated) {
-      console.log("Customer info", customerFormValues);
-      console.log("Payment info", paymentFormValues);
+      Swal.fire({
+        title: "Order placed successfully!",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonText: "Go to home",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`${baseURL}`);
+        } else {
+          setPaymentFormWasValidated(false);
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
     }
   }, [paymentFormWasValidated, customerFormWasValidated]);
 
