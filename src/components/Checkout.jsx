@@ -4,14 +4,16 @@ import OrderSummary from "./OrderSummary";
 import CartItem from "./CartItem";
 import "../styles/Checkout.css";
 import { useNavigate } from "react-router-dom";
-import CheckoutForm from "./CheckoutForm";
+import CustomerInfoForm from "./CheckoutForm";
 import PaymentForm from "./PaymentForm";
 
 export default function Checkout() {
   const baseURL = import.meta.env.BASE_URL;
   const navigate = useNavigate();
-  const [formWasValidated, setFormWasValidated] = useState(false);
-  const [formValues, setFormValues] = useState({});
+  const [customerFormWasValidated, setCustomerFormWasValidated] =
+    useState(false);
+  const [customerFormValues, setCustomerFormValues] = useState({});
+  const [paymentFormValues, setPaymentFormValues] = useState({});
 
   const { subtotal, cartProducts, cart, deleteCartItem } =
     useContext(CartContext);
@@ -53,16 +55,20 @@ export default function Checkout() {
           </ul>
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
-          <CheckoutForm
-            setFormValues={setFormValues}
-            setFormWasValidated={setFormWasValidated}
-            formWasValidated={formWasValidated}
+          <CustomerInfoForm
+            setFormValues={setCustomerFormValues}
+            setFormWasValidated={setCustomerFormWasValidated}
+            formWasValidated={customerFormWasValidated}
           />
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
           <OrderSummary title="3. Pay" subtotal={subtotal}>
-            <PaymentForm formWasValidated={formWasValidated} />
-            {formWasValidated || (
+            <PaymentForm
+              customerFormWasValidated={customerFormWasValidated}
+              paymentFormValues={paymentFormValues}
+              setPaymentFormValues={setPaymentFormValues}
+            />
+            {customerFormWasValidated || (
               <p className="text-warning">
                 You need to save your information to proceed with the payment
               </p>

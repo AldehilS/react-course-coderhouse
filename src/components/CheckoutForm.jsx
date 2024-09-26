@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CheckoutForm({
+export default function CustomerInfoForm({
   setFormValues,
   setFormWasValidated,
   formWasValidated,

@@ -1,10 +1,32 @@
-export default function PaymentForm({ formWasValidated }) {
+import { useState } from "react";
+
+export default function PaymentForm({ customerFormWasValidated, paymentFormValues, setPaymentFormValues }) {
+  const [fieldValidations, setFieldValidations] = useState({});
+  
+
+  function handleFieldChange(event) {
+    const { name, validity } = event.target;
+    setFieldValidations({ ...fieldValidations, [name]: validity.valid });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      const formData = new FormData(form);
+      const values = Object.fromEntries(formData.entries());
+      setPaymentFormValues(values);
+    }
+  }
+
   return (
     <form className="text-start mt-5 mb-3">
       <h4 className="h4">Payment information</h4>
       <fieldset
         className="row g-0 justify-content-center"
-        disabled={!formWasValidated}
+        disabled={!customerFormWasValidated}
       >
         <div className="mb-3 col-12">
           <label htmlFor="cardNumber" className="form-label">
