@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import OrderSummary from "./OrderSummary";
 import CartItem from "./CartItem";
@@ -9,6 +9,8 @@ import CheckoutForm from "./CheckoutForm";
 export default function Checkout() {
   const baseURL = import.meta.env.BASE_URL;
   const navigate = useNavigate();
+  const [formWasValidated, setFormWasValidated] = useState(false);
+  const [formValues, setFormValues] = useState({});
 
   const { subtotal, cartProducts, cart, deleteCartItem } =
     useContext(CartContext);
@@ -50,13 +52,26 @@ export default function Checkout() {
           </ul>
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
-          <CheckoutForm />
+          <CheckoutForm
+            setFormValues={setFormValues}
+            setFormWasValidated={setFormWasValidated}
+            formWasValidated={formWasValidated}
+          />
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
           <OrderSummary title="3. Pay" subtotal={subtotal}>
-            <button className="btn btn-warning w-50" type="button">
+            <button
+              className="btn btn-warning w-50"
+              type="button"
+              disabled={!formWasValidated}
+            >
               Pay
             </button>
+            {formWasValidated || (
+              <p className="text-warning">
+                You need to save your information to proceed with the payment
+              </p>
+            )}
           </OrderSummary>
         </div>
       </main>
