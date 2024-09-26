@@ -30,7 +30,6 @@ export default function CustomerInfoForm({
     event.preventDefault();
 
     setFormWasValidated(false);
-    console.log("Edit information");
   }
 
   return (
