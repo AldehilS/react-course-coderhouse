@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function PaymentForm({ customerFormWasValidated, paymentFormValues, setPaymentFormValues }) {
   const [fieldValidations, setFieldValidations] = useState({});
-  
 
   function handleFieldChange(event) {
     const { name, validity } = event.target;
@@ -22,7 +21,7 @@ export default function PaymentForm({ customerFormWasValidated, paymentFormValue
   }
 
   return (
-    <form className="text-start mt-5 mb-3">
+    <form className="text-start mt-5 mb-3" onSubmit={handleSubmit}>
       <h4 className="h4">Payment information</h4>
       <fieldset
         className="row g-0 justify-content-center"
@@ -34,10 +33,11 @@ export default function PaymentForm({ customerFormWasValidated, paymentFormValue
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${!fieldValidations["card-number"]? "is-invalid" : "is-valid"}`}
             id="cardNumber"
             name="card-number"
-            pattern="\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4}"
+            pattern="\d{4}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}"
+            onChange={handleFieldChange}
             required
           />
         </div>
@@ -47,10 +47,11 @@ export default function PaymentForm({ customerFormWasValidated, paymentFormValue
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${!fieldValidations["expiration-date"]? "is-invalid" : "is-valid"}`}
             id="expirationDate"
             name="expiration-date"
-            pattern="\d{2}/\d{2}"
+            pattern="(0[1-9]|1[0-2])( )?/( )?\d{2}"
+            onChange={handleFieldChange}
             required
           />
         </div>
@@ -60,10 +61,11 @@ export default function PaymentForm({ customerFormWasValidated, paymentFormValue
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${!fieldValidations["cvv"]? "is-invalid" : "is-valid"}`}
             id="cvv"
             name="cvv"
             pattern="\d{3,4}"
+            onChange={handleFieldChange}
             required
           />
         </div>
