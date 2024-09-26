@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "./CartContext";
 import OrderSummary from "./OrderSummary";
 import CartItem from "./CartItem";
 import "../styles/Checkout.css";
 import { useNavigate } from "react-router-dom";
+import CheckoutForm from "./CheckoutForm";
 
 export default function Checkout() {
   const baseURL = import.meta.env.BASE_URL;
@@ -30,7 +31,7 @@ export default function Checkout() {
             <h2 className="h2 text-white">1. Review your order summary.</h2>
             {cartProducts.map((product) => {
               return (
-                <>
+                <Fragment key={`checkout-fragment-${product.id}`}>
                   <li
                     key={`checkout-cartProduct-${product.id}`}
                     className="list-group-item my-2 rounded-3"
@@ -42,13 +43,15 @@ export default function Checkout() {
                     />
                   </li>
                   <hr className="text-light" />
-                </>
+                </Fragment>
               );
             })}
             <h3 className="h3 text-white text-end">Subtotal: ${subtotal}</h3>
           </ul>
         </div>
-        <div className="container col-12 col-md-6 col-lg-4"></div>
+        <div className="container col-12 col-md-6 col-lg-4 p-3">
+          <CheckoutForm />
+        </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
           <OrderSummary title="3. Pay" subtotal={subtotal}>
             <button className="btn btn-warning w-50" type="button">
