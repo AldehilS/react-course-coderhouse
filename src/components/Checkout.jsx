@@ -4,7 +4,7 @@ import OrderSummary from "./OrderSummary";
 import CartItem from "./CartItem";
 import "../styles/Checkout.css";
 import { useNavigate } from "react-router-dom";
-import CustomerInfoForm from "./CheckoutForm";
+import CustomerInfoForm from "./CustomerInfoForm";
 import PaymentForm from "./PaymentForm";
 
 export default function Checkout() {
@@ -12,6 +12,7 @@ export default function Checkout() {
   const navigate = useNavigate();
   const [customerFormWasValidated, setCustomerFormWasValidated] =
     useState(false);
+  const [paymentFormWasValidated, setPaymentFormWasValidated] = useState(false);
   const [customerFormValues, setCustomerFormValues] = useState({});
   const [paymentFormValues, setPaymentFormValues] = useState({});
 
@@ -23,6 +24,13 @@ export default function Checkout() {
       navigate(`${baseURL}`);
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    if (customerFormWasValidated && paymentFormWasValidated) {
+      console.log("Customer info", customerFormValues);
+      console.log("Payment info", paymentFormValues);
+    }
+  }, [paymentFormWasValidated, customerFormWasValidated]);
 
   return (
     <>
@@ -65,8 +73,8 @@ export default function Checkout() {
           <OrderSummary title="3. Pay" subtotal={subtotal}>
             <PaymentForm
               customerFormWasValidated={customerFormWasValidated}
-              paymentFormValues={paymentFormValues}
               setPaymentFormValues={setPaymentFormValues}
+              setPaymentFormWasValidated={setPaymentFormWasValidated}
             />
             {customerFormWasValidated || (
               <p className="text-warning">

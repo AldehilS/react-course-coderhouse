@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function PaymentForm({ customerFormWasValidated, paymentFormValues, setPaymentFormValues }) {
+export default function PaymentForm({ customerFormWasValidated, setPaymentFormValues, setPaymentFormWasValidated }) {
   const [fieldValidations, setFieldValidations] = useState({});
 
   function handleFieldChange(event) {
@@ -17,6 +17,7 @@ export default function PaymentForm({ customerFormWasValidated, paymentFormValue
       const formData = new FormData(form);
       const values = Object.fromEntries(formData.entries());
       setPaymentFormValues(values);
+      setPaymentFormWasValidated(true);
     }
   }
 
