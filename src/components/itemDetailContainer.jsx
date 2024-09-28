@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -9,19 +11,16 @@ export default function ItemDetailContainer() {
   const [productQuantity, setProductQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const productFiltered = data.find(
-          (product) => product.id.toString() === id
-        );
-        setProduct(productFiltered);
-      })
-      .catch((error) => {
+    async function getProduct() {
+      try{
+        const product = await getDoc(doc(db, "products", id));
+        setProduct({ id: product.id, ...product.data() });
+      } catch (error) {
         console.error("Error fetching product:", error);
-      });
+      }
+    }
+
+    getProduct();
   }, [id]);
 
   return (

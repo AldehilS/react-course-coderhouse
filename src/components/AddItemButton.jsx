@@ -12,7 +12,6 @@ export default function AddItemButton({
   const [okButton, setOkButton] = useState(false);
 
   function handleAddToCart() {
-    console.log(`Added ${productQuantity} of product ${productId} to cart`);
     const newCart = { ...cart };
     newCart[productId] = newCart[productId]
       ? newCart[productId] + productQuantity
@@ -30,21 +29,16 @@ export default function AddItemButton({
 
   return (
     <>
-      {okButton ? (
-        <button
-          className="btn btn-success w-25 align-self-center my-4"
-          disabled
-        >
-          <IoMdCheckmark /> Added
-        </button>
-      ) : (
-        <button
-          className="btn btn-warning w-25 align-self-center my-4"
-          onClick={handleAddToCart}
-        >
-          <MdOutlineShoppingCart /> Buy
-        </button>
-      )}
+      <button
+        className={`btn ${
+          okButton ? "btn-success" : "btn-warning"
+        } w-25 align-self-center my-4`}
+        onClick={handleAddToCart}
+        disabled={okButton}
+      >
+        {okButton ? <IoMdCheckmark /> : <MdOutlineShoppingCart />}{" "}
+        {okButton ? "Added" : "Buy"}
+      </button>
     </>
   );
 }

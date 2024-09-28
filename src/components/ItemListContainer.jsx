@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
+import { db } from "../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 export default function ItemListContainer({ greeting }) {
   const { id } = useParams();
@@ -8,23 +10,28 @@ export default function ItemListContainer({ greeting }) {
   const baseURL = import.meta.env.BASE_URL;
 
   useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
+    async function getProducts() {
+      try {
+        let q = query(collection(db, "products"));
+
         if (id) {
-          const productsFiltered = data.filter(
-            (product) => product.category === id
-          );
-          setProducts(productsFiltered);
-        } else {
-          setProducts(data);
+          q = query(collection(db, "products"), where("category", "==", id));
         }
-      })
-      .catch((error) => {
+
+        const productsCollection = await getDocs(q);
+
+        let newProducts = [];
+        productsCollection.forEach((doc) => {
+          newProducts.push({ id: doc.id, ...doc.data() });
+        });
+
+        setProducts(newProducts);
+      } catch (error) {
         console.error("Error fetching products:", error);
-      });
+      }
+    }
+
+    getProducts();
   }, [id]);
 
   return (

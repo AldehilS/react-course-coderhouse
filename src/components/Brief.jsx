@@ -1,41 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import CartItem from "./CartItem";
 import OrderSummary from "./OrderSummary";
+import { Link } from "react-router-dom";
 
 export default function Brief() {
-  const { cart, setCart } = useContext(CartContext);
-  const [cartProducts, setCartProducts] = useState([]);
-  const baseURL = import.meta.env.BASE_URL;
-
-  function deleteCartItem(id) {
-    const newCart = { ...cart };
-    delete newCart[id];
-    setCart(newCart);
-  }
-
-  useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const products = [];
-        data.forEach((product) => {
-          cart[product.id] ? products.push(product) : null;
-        });
-        setCartProducts(products);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, [cart]);
+  const { cart, cartProducts, subtotal, deleteCartItem } =
+    useContext(CartContext);
 
   return (
     <>
       <main className="flex-grow-1" data-bs-theme="dark">
         <h1 className="h1 mt-3 text-white">Your Cart</h1>
-        <div className="row">
+        <div className="row g-0">
           {cartProducts.length === 0 ? (
             <h2 className="h2 text-white">Your cart is empty</h2>
           ) : (
@@ -44,7 +21,7 @@ export default function Brief() {
                 {cartProducts.map((product) => {
                   return (
                     <li
-                      key={product.id}
+                      key={`brief-cartProduct-${product.id}`}
                       className="list-group-item my-2 rounded-3"
                     >
                       <CartItem
@@ -57,11 +34,11 @@ export default function Brief() {
                 })}
               </ul>
               <div className="col-12 col-md-4 p-4">
-                <OrderSummary
-                  subtotal={cartProducts.reduce((acc, {id, price}) => {
-                    return acc + price * cart[id];
-                  }, 0)}
-                />
+                <OrderSummary title="Order Summary" subtotal={subtotal}>
+                  <Link to="/checkout" className="btn btn-warning">
+                    Proceed to checkout
+                  </Link>
+                </OrderSummary>
               </div>
             </>
           )}
