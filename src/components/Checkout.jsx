@@ -9,7 +9,6 @@ import PaymentForm from "./PaymentForm";
 import Swal from "sweetalert2";
 
 export default function Checkout() {
-  const baseURL = import.meta.env.BASE_URL;
   const navigate = useNavigate();
   const [customerFormWasValidated, setCustomerFormWasValidated] =
     useState(false);
@@ -22,7 +21,7 @@ export default function Checkout() {
 
   useEffect(() => {
     if (cartProducts.length === 0) {
-      navigate(`${baseURL}`);
+      navigate("/");
     }
   }, [cartProducts]);
 
@@ -40,7 +39,7 @@ export default function Checkout() {
         confirmButtonText: "Go to home",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate(`${baseURL}`);
+          navigate("/");
         } else {
           setPaymentFormWasValidated(false);
         }
