@@ -1,9 +1,10 @@
+import { doc, getDoc } from "firebase/firestore";
 import { createContext, useState, useEffect } from "react";
+import { db } from "../firebase";
 
 export const CartContext = createContext({});
 
 export default function CartContextProvider({ children }) {
-  const baseURL = import.meta.env.BASE_URL;
 
   const [cart, setCart] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
@@ -15,21 +16,23 @@ export default function CartContextProvider({ children }) {
     setCart(newCart);
   }
 
+  async function getCartProduct(id) {
+    try {
+      const product = await getDoc(doc(db, "products", id));
+      return { id: product.id, ...product.data() };
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  }
+
   useEffect(() => {
-    fetch(`${baseURL}products.json`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const products = [];
-        data.forEach((product) => {
-          cart[product.id] ? products.push(product) : null;
-        });
-        setCartProducts(products);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
+    const products = Object.entries(cart).map(([id, _]) => {
+      return getCartProduct(id);
+    })
+
+    Promise.all(products).then((products) => {
+      setCartProducts(products);
+    });
   }, [cart]);
 
   useEffect(() => {
