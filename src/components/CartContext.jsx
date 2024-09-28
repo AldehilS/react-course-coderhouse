@@ -32,6 +32,8 @@ export default function CartContextProvider({ children }) {
 
     Promise.all(products).then((products) => {
       setCartProducts(products);
+    }).catch((error) => {
+      console.error(error);
     });
   }, [cart]);
 
