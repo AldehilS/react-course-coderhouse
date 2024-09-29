@@ -25,10 +25,12 @@ export default function ItemDetail({
             <Description
               description={product.description}
               price={product.price}
+              stock={product.stock}
             />
             <ItemQuantitySelector
               productQuantity={productQuantity}
               setProductQuantity={setProductQuantity}
+              maxQuantity={product.stock}
             />
             <AddItemButton
               productQuantity={productQuantity}
