@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CustomerInfoForm from "./CustomerInfoForm";
 import PaymentForm from "./PaymentForm";
 import Swal from "sweetalert2";
-import { doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function Checkout() {
@@ -71,21 +71,51 @@ export default function Checkout() {
         }
 
         if (allProductAvailable) {
-          await Swal.fire({
-            title: "Order created succesfully",
-            text: "Your order has been created succesfully",
-            icon: "success",
-            confirmButtonText: "Go home",
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              setCart({});
-              navigate("/");
-            }
-          }).catch((error) => {
-            console.error("Error displaying alert or deleting cart items", error);
-          })
+          const docData = {
+            customerInfo: customerFormValues,
+            paymentInfo: {
+              cardNumber: paymentFormValues["card-number"].slice(-4),
+            },
+            products: cartProducts.map((product) => {
+              return {
+                id: product.id,
+                name: product.name,
+                quantity: cart[product.id],
+                price: product.price,
+              };
+            }),
+            subtotal: subtotal,
+            shipment: 0,
+            total: subtotal + subtotal * 0.16,
+            timestamp: Timestamp.now(),
+          };
+          try {
+            const orderDocRef = await addDoc(collection(db, "orders"), docData);
+            const orderDoc = await getDoc(orderDocRef);
+            await Swal.fire({
+              title: "Order created succesfully",
+              text: `Your order has been created succesfully with id: ${orderDoc.id}`,
+              icon: "success",
+              confirmButtonText: "Go home",
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+            })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  setCart({});
+                  navigate("/");
+                }
+              })
+              .catch((error) => {
+                console.error(
+                  "Error displaying alert or deleting cart items",
+                  error
+                );
+              });
+          } catch (error) {
+            console.error("Error creating order", error);
+            throw `Error creating order: ${error}`;
+          }
         }
       } catch (error) {
         console.error("Error checking products availability", error);
