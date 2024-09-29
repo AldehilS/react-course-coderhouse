@@ -175,7 +175,7 @@ export default function Checkout() {
                 </Fragment>
               );
             })}
-            <h3 className="h3 text-white text-end">Subtotal: ${subtotal}</h3>
+            <h3 className="h3 text-white text-end">Subtotal: ${subtotal.toFixed(2)}</h3>
           </ul>
         </div>
         <div className="container col-12 col-md-6 col-lg-4 p-3">
