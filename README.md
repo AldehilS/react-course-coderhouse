@@ -2,6 +2,8 @@
 
 This project is an eCommerce website built using React. The current progress includes a responsive Navbar, a CartWidget component, and an ItemListContainer component. Bootstrap is used for styling and responsiveness.
 
+![Gif demostration of the project](resources/GIFReactCurso.gif)
+
 ## Installation
 
 Follow the steps below to set up and run the project locally:
@@ -40,6 +42,24 @@ Here is a description of the components and main features made for the first del
 
 - **Styling and Responsiveness**:
   - Utilized Bootstrap to style the components and ensure the page is responsive across different screen sizes.
+
+## Second Milestone Delivery
+### Implementations
+- **React Router DOM**: Implemented `react-router-dom` to navigate between different pages of the application.
+- **Product Fetch Simulation** : Simulated product fetching using fetch to retrieve data from a `products.js` file.
+- **Product Display Logic**: Implemented logic to display products in `ItemListContainer` based on their category.
+- **Product Detail View**: Created the `ItemDetailContainer` view to show product details by their ID.
+
+## Final Delivery
+### Implementations
+- **Add to Cart and Purchase Flow**: Created the complete flow for adding products to the cart and proceeding with the purchase.
+- **Component Refactoring**: Refactored `ItemListContainer` and `ItemDetailContainer` components to handle logic, while `ItemList` and `ItemDetail` handle presentation.
+- **Firestore Integration**: Replaced local JSON fetches with Firestore queries from Firebase to retrieve products from the database, generate purchase orders, and update available product stock.
+### Stock Management Flow
+The flow used to check and update stock is as follows:
+
+- **Stock Check**: Stock is checked when a user adds products to their cart.
+- **Stock Update**: Stock is updated only when the purchase is completed, to avoid creating reserved stock that could be blocked if a user does not complete the purchase.
 
 ## Usage
 
