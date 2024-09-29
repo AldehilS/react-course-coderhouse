@@ -19,6 +19,9 @@ export default function Item({ product, baseURL }) {
               <h5 className="card-title">{product.name}</h5>
               <p className="card-text">{product.description}</p>
               <p className="card-text small text-body-secondary">
+                Available stock: {product.stock}
+              </p>
+              <p className="card-text small text-body-secondary">
                 ${product.price}
               </p>
             </div>

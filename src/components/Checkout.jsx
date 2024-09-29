@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import CustomerInfoForm from "./CustomerInfoForm";
 import PaymentForm from "./PaymentForm";
 import Swal from "sweetalert2";
+import { addDoc, collection, doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ export default function Checkout() {
   const [customerFormValues, setCustomerFormValues] = useState({});
   const [paymentFormValues, setPaymentFormValues] = useState({});
 
-  const { subtotal, cartProducts, cart, deleteCartItem } =
+  const { subtotal, cartProducts, cart, deleteCartItem, setCart } =
     useContext(CartContext);
 
   useEffect(() => {
@@ -26,26 +28,123 @@ export default function Checkout() {
   }, [cartProducts]);
 
   /**
-   * This effect will be triggered when both forms are validated.
-   * It will  register the order and show a success message.
+   * This useEffect will be triggered when both forms are validated.
+   * It will validate the availability of the products in the cart.
+   * It will  register the order and show a success message after.
    * If the user clicks on "Go to home", it will redirect to the home page.
    */
   useEffect(() => {
-    if (customerFormWasValidated && paymentFormWasValidated) {
-      Swal.fire({
-        title: "Order placed successfully!",
-        icon: "success",
-        showCancelButton: true,
-        confirmButtonText: "Go to home",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/");
-        } else {
-          setPaymentFormWasValidated(false);
+    async function checkProductsAvailability() {
+      try {
+        let allProductAvailable = true;
+
+        for (const product of cartProducts) {
+          const productDoc = await getDoc(doc(db, "products", product.id));
+
+          if (productDoc.data().stock < cart[product.id]) {
+            await Swal.fire({
+              title: "Product not available",
+              text: `We only have ${productDoc.data().stock} units of ${
+                product.name
+              }. You selected ${
+                cart[product.id]
+              }. Please adjust the quantity or remove the product to proceed.`,
+              icon: "error",
+              showConfirmButton: true,
+              confirmButtonText: "Remove item",
+              showCancelButton: true,
+            })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  deleteCartItem(product.id);
+                }
+              })
+              .catch((error) => {
+                console.error(
+                  "Error displaying alert or removing product",
+                  error
+                );
+              });
+            setPaymentFormWasValidated(false);
+            allProductAvailable = false;
+          }
         }
-      }).catch((error) => {
-        console.error(error);
-      });
+
+        if (allProductAvailable) {
+          const docData = {
+            customerInfo: customerFormValues,
+            paymentInfo: {
+              cardNumber: paymentFormValues["card-number"].slice(-4),
+            },
+            products: cartProducts.map((product) => {
+              return {
+                id: product.id,
+                name: product.name,
+                quantity: cart[product.id],
+                price: product.price,
+              };
+            }),
+            subtotal: subtotal,
+            shipment: 0,
+            total: subtotal + subtotal * 0.16,
+            timestamp: Timestamp.now(),
+          };
+          try {
+            const orderDocRef = await addDoc(collection(db, "orders"), docData);
+            const orderDoc = await getDoc(orderDocRef);
+
+            try {
+              for (const product of cartProducts) {
+                const productRef = doc(db, "products", product.id);
+                await updateDoc(productRef, {
+                  stock:
+                    (await getDoc(productRef)).data().stock - cart[product.id],
+                })
+              }
+            } catch (error) {
+              console.error("Error updating products stock", error);
+              throw `Error updating products stock: ${error}`;
+            }
+
+            await Swal.fire({
+              title: "Order created succesfully",
+              text: `Your order has been created succesfully with id: ${orderDoc.id}`,
+              icon: "success",
+              confirmButtonText: "Go home",
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+            })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  setCart({});
+                  navigate("/");
+                }
+              })
+              .catch((error) => {
+                console.error(
+                  "Error displaying alert or deleting cart items",
+                  error
+                );
+              });
+          } catch (error) {
+            console.error("Error creating order", error);
+            throw `Error creating order: ${error}`;
+          }
+        }
+      } catch (error) {
+        console.error("Error checking products availability", error);
+        await Swal.fire({
+          title: "Error",
+          text: "An error occurred while processing your order. Please try again later.",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        setPaymentFormWasValidated(false);
+      }
+    }
+
+    if (customerFormWasValidated && paymentFormWasValidated) {
+      checkProductsAvailability();
     }
   }, [paymentFormWasValidated, customerFormWasValidated]);
 

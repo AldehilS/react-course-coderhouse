@@ -1,6 +1,7 @@
 export default function ItemQuantitySelector({
   productQuantity,
   setProductQuantity,
+  maxQuantity,
 }) {
   function handleDecrement() {
     if (productQuantity > 0) {
@@ -9,7 +10,9 @@ export default function ItemQuantitySelector({
   }
 
   function handleIncrement() {
-    setProductQuantity(productQuantity + 1);
+    if (productQuantity < maxQuantity) {
+      setProductQuantity(productQuantity + 1);
+    }
   }
 
   return (
@@ -29,7 +32,7 @@ export default function ItemQuantitySelector({
         </button>
         <span className="mx-3">{productQuantity}</span>
         <button
-          className="btn btn-primary w-25"
+          className={`btn btn-primary w-25 ${productQuantity >= maxQuantity ? "disabled" : ""}`}
           style={{ minWidth: "40px" }}
           onClick={handleIncrement}
         >
