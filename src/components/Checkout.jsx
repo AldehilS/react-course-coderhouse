@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import CustomerInfoForm from "./CustomerInfoForm";
 import PaymentForm from "./PaymentForm";
 import Swal from "sweetalert2";
-import { addDoc, collection, doc, getDoc, Timestamp } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export default function Checkout() {
@@ -92,6 +92,20 @@ export default function Checkout() {
           try {
             const orderDocRef = await addDoc(collection(db, "orders"), docData);
             const orderDoc = await getDoc(orderDocRef);
+
+            try {
+              for (const product of cartProducts) {
+                const productRef = doc(db, "products", product.id);
+                await updateDoc(productRef, {
+                  stock:
+                    (await getDoc(productRef)).data().stock - cart[product.id],
+                })
+              }
+            } catch (error) {
+              console.error("Error updating products stock", error);
+              throw `Error updating products stock: ${error}`;
+            }
+
             await Swal.fire({
               title: "Order created succesfully",
               text: `Your order has been created succesfully with id: ${orderDoc.id}`,
@@ -119,6 +133,13 @@ export default function Checkout() {
         }
       } catch (error) {
         console.error("Error checking products availability", error);
+        await Swal.fire({
+          title: "Error",
+          text: "An error occurred while processing your order. Please try again later.",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+        setPaymentFormWasValidated(false);
       }
     }
 
