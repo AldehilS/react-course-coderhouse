@@ -41,7 +41,7 @@ export default function Checkout() {
         for (const product of cartProducts) {
           const productDoc = await getDoc(doc(db, "products", product.id));
 
-          if (2 < cart[product.id]) {
+          if (productDoc.data().stock < cart[product.id]) {
             await Swal.fire({
               title: "Product not available",
               text: `We only have ${productDoc.data().stock} units of ${
